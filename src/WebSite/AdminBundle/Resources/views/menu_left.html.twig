@@ -1,0 +1,11 @@
+{# empty Twig template #}
+<div class="span3" id="sidebar">
+    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+        <li id="list">
+            <a href="{{ path('list_app_index')}}"><i class="icon-chevron-right"></i>Todas las listas</a>
+        </li>
+        {{ render(controller('WebSiteAppBundle:Default:listMenu')) }}
+       
+        
+    </ul>
+</div>

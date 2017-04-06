@@ -1,0 +1,73 @@
+<?php
+
+namespace WebSite\AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * ListApp
+ *
+ * @ORM\Table(name="activity")
+ * @ORM\Entity
+ */
+class Activity {
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="accion", type="string", length=255, nullable=false)
+     */
+    private $name;
+    
+            /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="ListApp")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $list;
+    
+    
+     /**
+     * @var \DateTime $created
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+    
+    /**
+     * @var \DateTime deadline
+     *
+     * @ORM\Column(type="datetime", name="date_limit")
+     */
+    private $deadline;
+    
+     /**
+     * @var \DateTime $endDate
+     *
+     * @ORM\Column(type="datetime", name="end_date")
+     */
+    private $endDate;
+    
+       /**
+     * @var \DateTime $created
+     *
+     * @ORM\Column(type="boolean", name="status")
+     */
+    private $status;
+
+
+    
+
+}

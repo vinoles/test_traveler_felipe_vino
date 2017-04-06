@@ -1,0 +1,47 @@
+{% extends "WebSiteAdminBundle::layout.html.twig" %}
+{% block body %}
+
+    {% block content %}
+        <div class="span9" id="content">
+
+            <div class="row-fluid">
+                <div class="block">
+                    <div class="navbar navbar-inner block-header">
+                        <div class="muted pull-left">Crear una nueva actividad</div>
+                    </div>
+                    <div class="block-content collapse in">
+                        <div class="span12">
+                            {{ form_start(form,{ 'attr': {'class': 'form-horizontal', "id": "form_activity", "novalidate":"novalidate", 'role':'form'} }) }}
+                            {{ form_errors(form) }}
+                            <fieldset>
+                                <legend>Lista</legend>
+                                {{ form_widget(form) }}
+                                <div class="form-actions">
+                                    <a href="{{ path('list_app_show', { 'id': listId}) }}" class="btn btn-danger btn-small">
+                                        {% trans %}Cancelar{% endtrans %}
+                                    </a>
+                                    <button type="reset" class="btn btn-info btn-small">
+                                        {% trans %}Resetear{% endtrans %}
+                                    </button>
+                                    <button type="submit" class="btn btn-success green btn-small">
+                                        {% trans %}Crear{% endtrans %}
+                                    </button>
+                                </div>
+                                {{ form_end(form) }}
+                            </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <input type="hidden" value="{{listId}}" id="li_menu">
+    {% endblock %}
+    {% block scripts %}
+        <script>
+            var li_menu = $("#li_menu").val();
+             $("#list-menu-" + li_menu).addClass("active");
+        </script>
+    {% endblock %}
+{% endblock %}

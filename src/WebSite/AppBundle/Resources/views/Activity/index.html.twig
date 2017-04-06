@@ -1,0 +1,63 @@
+{% extends "WebSiteAdminBundle::layout.html.twig" %}
+{% block body %}
+
+    {% block content %}
+        <div class="span9" id="content">
+            <div class="row-fluid">
+                <div class="block">
+                    <div class="navbar navbar-inner block-header">
+                        <div class="muted pull-left">Actividades</div>
+                    </div>
+                    <div class="block-content collapse in">
+                        <div class="span12">
+                            <div class="table-toolbar">
+                                <div class="btn-group pull-right">
+                                    <a href="{{ path('activity_new') }}"><button class="btn btn-success">Nueva Lista <i class="icon-plus icon-white"></i></button></a>
+                                </div>
+                            </div>
+                            <br>
+
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="list_table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Created</th>
+                                        <th>Deadline</th>
+                                        <th>Enddate</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for activity in activities %}
+                                        <tr>
+                                            <td><a href="{{ path('activity_show', { 'id': activity.id }) }}">{{ activity.id }}</a></td>
+                                            <td>{{ activity.name }}</td>
+                                            <td>{% if activity.created %}{{ activity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>{% if activity.deadline %}{{ activity.deadline|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>{% if activity.endDate %}{{ activity.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>{% if activity.status %}Yes{% else %}No{% endif %}</td>
+                                             <td>
+                                                <a class="btn-small btn-primary btn" href="{{ path('activity_show', { 'id': listApp.id }) }}">ver actividades</a>
+                                                <a class="btn-small btn-info btn"href="{{ path('activity_edit', { 'id': listApp.id }) }}">editar</a>
+                                                <a class="btn-small btn-danger btn" href="#">borrar</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block scripts %}
+        <script>
+
+            $("#list").addClass("active");
+        </script>
+    {% endblock %}
+{% endblock %}

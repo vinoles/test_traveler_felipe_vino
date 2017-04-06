@@ -1,0 +1,49 @@
+{% extends "WebSiteAdminBundle::layout.html.twig" %}
+{% block body %}
+
+    {% block content %}
+        <div class="span9" id="content">
+
+            <div class="row-fluid">
+                <div class="block">
+                    <div class="navbar navbar-inner block-header">
+                        <div class="muted pull-left">Detalle de la actividad</div>
+                    </div>
+                    <div class="block-content collapse in">
+                        <div class="span12">
+                            <fieldset>
+                                <legend>Actividad</legend>
+                                <div class="row">
+                                    <div class="span2">
+                                    </div>
+                                    <div class="span5">
+                                        Nombre: {{ activity.name }}
+                                    </div>
+                                    <div class="span5">
+                                        Fecha de creación: {{ activity.created|date('d-M-Y H:i:s') }}
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <a class="btn-small btn-primary btn" href="{{ path('list_app_show', { 'id': activity.list.id }) }}">regresar a la lista </a>
+                                    <a class="btn-small btn-info btn" href="{{ path('activity_edit', { 'id': activity.id, 'listId': activity.list.id }) }}">editar</a>
+
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>  
+
+        <input type="hidden" value="{{activity.list.id}}" id="li_menu">
+    {% endblock %}
+    {% block scripts %}
+        <script>
+            var li_menu = $("#li_menu").val();
+            $("#list-menu-" + li_menu).addClass("active");
+        </script>
+    {% endblock %}
+{% endblock %}

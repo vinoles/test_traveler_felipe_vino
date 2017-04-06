@@ -1,0 +1,59 @@
+/*Creacion de los 2 elementos*/
+#drag {
+     width: 100px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+     border-radius: 50%;
+    background: blue;
+    margin: 0 35% 0 0;
+    position: relative;
+    /*top: 0%;*/
+    /*left: 10%; */
+    float: right;
+    transition:top;
+    webkit-transition:top;
+    -o-transition:top;
+    -moz-transition:top;
+    transition-duration: 5s;
+    -webkit-transition-duration: 5s;
+    -o-transition-duration: 5s";
+    -moz-transition-duration:5s;
+    opacity: 1;
+    z-index:3;
+}
+
+#contenedor_simulador {
+position: absolute:
+top:200px;
+width: 400px;
+height: 300px;
+border: 6px solid #bdc3c7;
+border-top-style: none;
+}
+
+#simulador-top {
+position: absolute:
+top:200px;
+width: 400px;
+height: 100px;
+background: none; 
+margin: 1em auto 0;
+border-top-style: none;
+z-index:4;
+}
+#simulador {
+position: absolute:
+top:300px;
+width: 400px;
+height: 200px;
+background: rgba(175,238,238,0.2); 
+z-index:4;
+opacity: 0.3;
+}
+
+.color-material {
+background-color: rgba(0, 0, 0, 0.14902);
+}
+
+

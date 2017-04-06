@@ -1,0 +1,5 @@
+{% for listApp in listApps %}
+    <li id="list-menu-{{listApp.id}}">
+        <a href="{{ path('list_app_show', { 'id': listApp.id }) }}"><i class="icon-chevron-right"></i>{{ listApp.name }}</a>
+    </li>
+{% endfor %}

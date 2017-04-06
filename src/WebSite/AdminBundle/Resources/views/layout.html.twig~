@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+    <head>
+        <title>Admin Home Page</title>
+        {% block stylesheets %}
+            <!-- Bootstrap -->
+            {%if not is_granted('ROLE_SUPER_ADMIN')%}
+                <link href="{{ asset('bundles/websiteadmin/css/flotabilidad/simulador.css') }}"rel="stylesheet" media="screen">
+                <link href="{{ asset('bundles/websiteadmin/css/flotabilidad/cubo.css') }}"rel="stylesheet" media="screen">
+                 <link href="{{ asset('bundles/websiteadmin/css/flotabilidad/cilindro.css') }}"rel="stylesheet" media="screen">
+            {% endif %}
+            <link href="{{ asset('bundles/websiteadmin/plugins/bootstrap/css/bootstrap.min.css') }}"  rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/vendors/easypiechart/jquery.easy-pie-chart.css') }}" rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/assets/styles.css') }}"  rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/assets/DT_bootstrap.css') }}" rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/vendors/datepicker.css') }}"rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/vendors/uniform.default.css') }}" rel="stylesheet" media="screen">
+            <link href="{{ asset('bundles/websiteadmin/plugins/vendors/chosen.min.css') }}"rel="stylesheet" media="screen">
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
+        {% endblock stylesheets %}
+
+    </head>
+
+    <body>
+
+        {% block header %}
+            {% if is_granted('ROLE_SUPER_ADMIN') %} 
+                {% include "WebSiteAdminBundle::menu_top_admin.html.twig" %}
+            {%elseif is_granted('ROLE_PROF')%}
+                {% include "WebSiteAdminBundle::menu_top_prof.html.twig" %}
+            {%elseif is_granted('ROLE_ESTU')%}
+                {% include "WebSiteAdminBundle::menu_top_estu.html.twig" %}
+            {% endif %}
+        {% endblock header%}
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                {% block menu_lateral %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %} 
+                        {% include "WebSiteAdminBundle::menu_lateral_admin.html.twig" %}
+                    {%elseif is_granted('ROLE_PROF')%}
+                        {% include "WebSiteAdminBundle::menu_lateral_prof.html.twig" %}
+                    {%elseif is_granted('ROLE_ESTU')%}
+                        {% include "WebSiteAdminBundle::menu_lateral_estu.html.twig" %}
+                    {% endif %}
+
+                {% endblock menu_lateral%}
+                {% block content %} <!--  content of the page -->
+
+                {% endblock content%}
+            </div>
+            <hr>
+            <footer>
+                {#                <p>&copy; Vincent Gabriel 2013</p>#}
+                <p>&copy; Flotabilidad UPTP 2015</p>
+            </footer>
+        </div>
+        {% block javascripts %}
+            <!--/.fluid-container-->
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/jquery-1.9.1.min.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/easypiechart/jquery.easy-pie-chart.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/assets/scripts.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/datatables/js/jquery.dataTables.min.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/assets/DT_bootstrap.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/jquery.uniform.min.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/chosen.jquery.min.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/bootstrap-datepicker.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/wysiwyg/wysihtml5-0.3.0.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/wysiwyg/bootstrap-wysihtml5.js')}}"></script>
+            <script src="{{ asset('bundles/websiteadmin/plugins/vendors/wizard/jquery.bootstrap.wizard.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/websiteadmin/plugins/vendors/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/websiteadmin/js/functions.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+            {%if not is_granted('ROLE_SUPER_ADMIN') %}
+                <script type="text/javascript" src="{{ asset('bundles/websiteflotable/js/Angular/angular.min.js')}}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/websiteflotable/js/Angular/controller.js')}}"></script>
+                 <script type="text/javascript" src="{{ asset('bundles/websiteadmin/js/simulador/simulador.js')}}"></script>
+            {% endif %}
+            <script>
+                $(function () {
+                    // Easy pie charts
+                    $('.chart').easyPieChart({animate: 1000});
+                });
+                   $('#list_table').dataTable({
+                       "oLanguage": {
+			"sUrl": "{{ asset('bundles/websiteadmin/js/español-data-table.json')}}"
+		}
+                });
+            </script>
+        {% endblock javascripts %}
+        {% block scripts %}
+            {# scripts JS#}
+        {% endblock %}
+    </body>
+
+</html>
